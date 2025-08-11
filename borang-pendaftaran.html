@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borang Pendaftaran Inventori</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #2980b9;
+        }
+        form {
+            margin-top: 24px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 16px;
+            border: 1px solid #b5b5b5;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 24px;
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #219150;
+        }
+        .info {
+            background: #e3f0fa;
+            border-left: 4px solid #2980b9;
+            padding: 12px 18px;
+            margin: 20px 0;
+            color: #205072;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Borang Pendaftaran Inventori</h1>
+        <div class="info">
+            <strong>Maklumat:</strong> Sila lengkapkan borang di bawah untuk mendaftarkan item inventori baharu.
+        </div>
+        <form action="proses-pendaftaran-inventori.php" method="POST">
+            <label for="nama_item">Nama Item</label>
+            <input type="text" id="nama_item" name="nama_item" required placeholder="Contoh: Laptop Dell Inspiron">
+
+            <label for="kategori">Kategori</label>
+            <select id="kategori" name="kategori" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="Komputer">Komputer</option>
+                <option value="Percetakan">Percetakan</option>
+                <option value="Aksesori">Aksesori</option>
+                <option value="Perabot">Perabot</option>
+                <option value="Lain-lain">Lain-lain</option>
+            </select>
+
+            <label for="no_siri">No. Siri</label>
+            <input type="text" id="no_siri" name="no_siri" required placeholder="Contoh: SN1234567">
+
+            <label for="tarikh_terima">Tarikh Terima</label>
+            <input type="date" id="tarikh_terima" name="tarikh_terima" required>
+
+            <label for="kuantiti">Kuantiti</label>
+            <input type="number" id="kuantiti" name="kuantiti" min="1" required placeholder="Contoh: 5">
+
+            <label for="lokasi">Lokasi Simpanan</label>
+            <input type="text" id="lokasi" name="lokasi" required placeholder="Contoh: Stor ICT">
+
+            <label for="catatan">Catatan</label>
+            <textarea id="catatan" name="catatan" rows="3" placeholder="Sebarang maklumat tambahan..."></textarea>
+
+            <button type="submit">Daftar Inventori</button>
+        </form>
+    </div>
+</body>
+</html>
