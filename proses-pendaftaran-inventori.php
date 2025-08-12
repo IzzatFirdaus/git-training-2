@@ -1,6 +1,6 @@
 <?php
 // proses-pendaftaran-inventori.php
-// Fail ini memproses data borang pendaftaran inventori yang dihantar dari borang-pendaftaran-inventori.html
+// Fail ini memproses data borang pendaftaran inventori yang dihantar dari borang-pendaftaran.html
 
 // Semak sama ada permintaan adalah POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -29,9 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             table { width: 100%; border-collapse: collapse;}
             td { padding: 8px 6px; }
             tr:nth-child(odd) { background: #f9f9f9; }
+            .footer-note {
+                margin-top: 32px;
+                font-size: 0.95em;
+                color: #888;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
+        <!-- Global Header -->
+        <div id="globalHeader"></div>
         <div class="container">
             <h1>Pendaftaran Berjaya</h1>
             <div class="success">
@@ -46,8 +54,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <tr><td><strong>Lokasi Simpanan</strong></td><td><?= $lokasi ?></td></tr>
                 <tr><td><strong>Catatan</strong></td><td><?= ($catatan ? $catatan : '-') ?></td></tr>
             </table>
-            <p><a href="borang-pendaftaran-inventori.html">Daftar Inventori Baru</a></p>
+            <p><a href="borang-pendaftaran.html">Daftar Inventori Baru</a></p>
+            <div class="footer-note">
+                Project Version: v1.0.0 | Last Updated: 12 Ogos 2025
+            </div>
         </div>
+        <!-- Global Footer -->
+        <div id="globalFooter"></div>
+        <script>
+            // Load global header and footer (if using with header.html/footer.html)
+            function loadHTML(id, url) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById(id).innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+            loadHTML("globalHeader", "header.html");
+            loadHTML("globalFooter", "footer.html");
+        </script>
     </body>
     </html>
     <?php

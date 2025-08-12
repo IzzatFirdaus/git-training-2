@@ -1,16 +1,17 @@
 <?php
-// Simple PHP server script
+// server.php
+// Skrip mudah untuk memberikan respons JSON dari server PHP
 
-// Set response header
+// Set response header ke JSON
 header('Content-Type: application/json');
 
-// Example response data
+// Data respons contoh
 $response = [
     'status' => 'success',
     'message' => 'Hello from server.php!',
     'timestamp' => date('Y-m-d H:i:s')
 ];
 
-// Output JSON response
+// Output respons dalam format JSON
 echo json_encode($response);
 ?>
