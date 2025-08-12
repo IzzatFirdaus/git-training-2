@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Masuk Admin</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ede6fa;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            display: flex;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(78, 43, 255, 0.10);
+            overflow: hidden;
+            width: 800px;
+            max-width: 98vw;
+        }
+        .login-form-section {
+            flex: 1.2;
+            padding: 48px 42px 42px 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .login-form-section h2 {
+            margin: 0 0 18px 0;
+            font-size: 28px;
+            color: #222;
+        }
+        .login-form-section p {
+            color: #7d7d7d;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+        .login-form label {
+            display: block;
+            margin: 12px 0 6px 0;
+            color: #333;
+            font-size: 15px;
+        }
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #d1d1d1;
+            font-size: 15px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .login-form input[type="email"]:focus,
+        .login-form input[type="password"]:focus {
+            outline: none;
+            border-color: #7a5cf0;
+        }
+        .login-form button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #7a5cf0;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 12px 0 16px 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-form button[type="submit"]:hover {
+            background: #5737d6;
+        }
+        .divider {
+            text-align: center;
+            margin: 12px 0;
+            color: #aaa;
+            font-size: 13px;
+        }
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .social-login button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #f8f8f8;
+            border: 1px solid #e3e3e3;
+            border-radius: 5px;
+            padding: 9px 0;
+            font-size: 15px;
+            color: #444;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .social-login button:hover {
+            background: #ececec;
+        }
+        .error-message {
+            color: #d12f2f;
+            background: #feeaea;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: none;
+        }
+        .login-image-section {
+            flex: 1;
+            background: linear-gradient(140deg, #d6d1fa 0%, #9c93e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .login-image-section img {
+            width: 78%;
+            max-width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 4px 32px rgba(93, 67, 255, 0.11);
+        }
+        @media (max-width: 800px) {
+            .login-container {
+                flex-direction: column;
+                min-width: 300px;
+            }
+            .login-image-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="login-container">
+            <div class="login-form-section">
+                <h2>LOGIN</h2>
+                <p>Bagaimana saya boleh membantu anda?</p>
+                <form class="login-form" id="loginForm" autocomplete="off" onsubmit="return validateLogin(event);">
+                    <label for="email">Emel</label>
+                    <input type="email" id="email" name="email" required placeholder="Emel admin">
+                    <label for="password">Kata Laluan</label>
+                    <div id="errorMsg" class="error-message"></div>
+                    <div id="errorMsg" class="error-message" style="display:none"></div>
+                    <button type="submit">Log Masuk</button>
+                </form>
+                <div class="divider">atau login dengan</div>
+                <div class="social-login">
+                    <button type="button" onclick="alert('Google login tidak tersedia.')">
+                        <img src="https://img.icons8.com/color/24/000000/google-logo.png" alt="Google"> Login dengan Google
+                    </button>
+                    <button type="button" onclick="alert('Facebook login tidak tersedia.')">
+                        <img src="https://img.icons8.com/color/24/000000/facebook-new.png" alt="Facebook"> Login dengan Facebook
+                    </button>
+                </div>
+            </div>
+            <div class="login-image-section">
+                <!-- Guna imej rujukan dari soalan -->
+                <img src="image.png" alt="Admin Login Illustration">
+            </div>
+        </div>
+    </div>
+    <script>
+        // Maximum allowed attempts
+        let attempt = 0;
+        const maxAttempt = 3;
+
+        // Email regex (basic pattern)
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        /**
+         * Validate the login form on submit.
+         * - Validate email format
+         * - Limit password attempts to 3
+         * - Show error message if validation fails
+         */
+        function validateLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.style.display = 'none';
+            errorMsg.textContent = '';
+
+            // Validate email format
+            if (!isValidEmail(email)) {
+                errorMsg.textContent = "Sila masukkan emel yang sah.";
+                errorMsg.style.display = 'block';
+                return false;
+            }
+            // Validate password not empty
+            if (password.length < 1) {
+                errorMsg.textContent = "Sila masukkan kata laluan.";
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            // Simulate fail login validation (for demo, always fail)
+            // In real application, submit form to server for authentication
+            attempt++;
+            if (attempt >= maxAttempt) {
+                errorMsg.textContent = "Anda telah mencapai had maksimum percubaan log masuk.";
+                errorMsg.style.display = 'block';
+                // Disable inputs
+                document.getElementById('email').disabled = true;
+                document.getElementById('password').disabled = true;
+                document.querySelector('.login-form button[type="submit"]').disabled = true;
+                return false;
+            } else {
+                errorMsg.textContent = "Emel atau kata laluan anda tidak sah. Percubaan: " + attempt + "/" + maxAttempt;
+                errorMsg.style.display = 'block';
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
