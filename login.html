@@ -115,7 +115,6 @@
             border-radius: 6px;
             margin-bottom: 8px;
             font-size: 14px;
-            display: none;
         }
         .login-image-section {
             flex: 1;
@@ -143,6 +142,8 @@
     </style>
 </head>
 <body>
+    <!-- Global Header -->
+    <div id="globalHeader"></div>
     <div class="main-container">
         <div class="login-container">
             <div class="login-form-section">
@@ -152,7 +153,7 @@
                     <label for="email">Emel</label>
                     <input type="email" id="email" name="email" required placeholder="Emel admin">
                     <label for="password">Kata Laluan</label>
-                    <div id="errorMsg" class="error-message"></div>
+                    <input type="password" id="password" name="password" required placeholder="Kata laluan">
                     <div id="errorMsg" class="error-message" style="display:none"></div>
                     <button type="submit">Log Masuk</button>
                 </form>
@@ -167,12 +168,28 @@
                 </div>
             </div>
             <div class="login-image-section">
-                <!-- Guna imej rujukan dari soalan -->
+                <!-- Reference illustration for login page -->
                 <img src="image.png" alt="Admin Login Illustration">
             </div>
         </div>
     </div>
+    <!-- Global Footer -->
+    <div id="globalFooter"></div>
     <script>
+        // Load global header and footer
+        function loadHTML(id, url) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById(id).innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+        loadHTML("globalHeader", "header.html");
+        loadHTML("globalFooter", "footer.html");
+
         // Maximum allowed attempts
         let attempt = 0;
         const maxAttempt = 3;
