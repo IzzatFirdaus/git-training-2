@@ -39,29 +39,56 @@
 		a:hover {
 			text-decoration: underline;
 		}
+		.footer-note {
+			margin-top: 32px;
+			font-size: 0.95em;
+			color: #888;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
+	<!-- Global Header -->
+	<div id="globalHeader"></div>
+
 	<div class="container">
 		<h1>Welcome to Git Training!</h1>
 		<p>This is a sample <strong>index.html</strong> page for your Git training project.</p>
 		<div class="note">
 			<strong>Tip:</strong> Use this file to practice Git commands such as <code>add</code>, <code>commit</code>, <code>push</code>, <code>pull</code>, and more.
 		</div>
-		<h2>Sample Steps</h2>
+		<h2>Main Pages</h2>
 		<ul>
-			<li>Edit this file and add your name below.</li>
-			<li>Save your changes.</li>
-			<li>Use <code>git status</code> to see the changes.</li>
-			<li>Stage the file with <code>git add index.html</code>.</li>
-			<li>Commit your changes with <code>git commit -m \"Add my name to index.html\"</code>.</li>
-			<li>Push to the remote repository with <code>git push</code>.</li>
+			<li><a href="home.html">Home Page</a></li>
+			<li><a href="borang-pendaftaran.html">Borang Pendaftaran Inventori</a></li>
+			<li><a href="login.html">Login Admin</a></li>
+			<li><a href="sample.html">Sample Page</a></li>
+			<li><a href="test.html">Test Page</a></li>
 		</ul>
 		<h2>Contributors</h2>
 		<ul>
 			<li><!-- Add your name here --></li>
 		</ul>
-		<p>Go to <a href="home.html">Home Page</a></p>
+		<div class="footer-note">
+			Project Version: v1.0.0 | Last Updated: 12 Ogos 2025
+		</div>
 	</div>
+	<!-- Global Footer -->
+	<div id="globalFooter"></div>
+	<script>
+		// Load global header and footer (if using with header.html/footer.html)
+		function loadHTML(id, url) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState === 4 && this.status === 200) {
+					document.getElementById(id).innerHTML = this.responseText;
+				}
+			};
+			xhttp.open("GET", url, true);
+			xhttp.send();
+		}
+		loadHTML("globalHeader", "header.html");
+		loadHTML("globalFooter", "footer.html");
+	</script>
 </body>
 </html>

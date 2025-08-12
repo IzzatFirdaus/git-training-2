@@ -1,18 +1,17 @@
-<?php
-// index.php
-// Halaman utama aplikasi PHP sederhana
-
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <title>My First Git Training App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Inventori Berjaya</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 80px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
-        h1 { color: #333; }
-        p { color: #555; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+        h1 { color: #27ae60; }
+        .success { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px 18px; color: #205072; margin-bottom: 18px;}
+        table { width: 100%; border-collapse: collapse;}
+        td { padding: 8px 6px; }
+        tr:nth-child(odd) { background: #f9f9f9; }
         .footer-note {
             margin-top: 32px;
             font-size: 0.95em;
@@ -25,9 +24,14 @@
     <!-- Global Header -->
     <div id="globalHeader"></div>
     <div class="container">
-        <h1>Welcome to My First Git Training App!</h1>
-        <p>This is the home page of your PHP application.</p>
-        <p>Edit <code>index.php</code> to get started.</p>
+        <h1>Pendaftaran Berjaya</h1>
+        <div class="success">
+            Maklumat inventori telah berjaya didaftarkan.
+        </div>
+        <table id="inventoriTable">
+            <!-- Data will be filled by JS or PHP backend -->
+        </table>
+        <p><a href="borang-pendaftaran.html">Daftar Inventori Baru</a></p>
         <div class="footer-note">
             Project Version: v1.0.0 | Last Updated: 12 Ogos 2025
         </div>
@@ -48,6 +52,7 @@
         }
         loadHTML("globalHeader", "header.html");
         loadHTML("globalFooter", "footer.html");
+        // Optionally, you can populate the table with JavaScript if using local storage or API
     </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 // mail.php
+// Skrip untuk menghantar emel ujian menggunakan fungsi mail PHP
 
 // Set recipient email address
 $to = 'recipient@example.com';

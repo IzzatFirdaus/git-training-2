@@ -39,9 +39,18 @@
 		a:hover {
 			text-decoration: underline;
 		}
+		.footer-note {
+			margin-top: 32px;
+			font-size: 0.95em;
+			color: #888;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
+	<!-- Global Header -->
+	<div id="globalHeader"></div>
+
 	<div class="container">
 		<h1>Home Page</h1>
 		<p>Welcome to the <strong>home.html</strong> page for your Git training project.</p>
@@ -59,6 +68,26 @@
 			<li><!-- Add your message here --></li>
 		</ul>
 		<p>Back to <a href="index.html">Index Page</a></p>
+		<div class="footer-note">
+			Project Version: v1.0.0 | Last Updated: 12 Ogos 2025
+		</div>
 	</div>
+	<!-- Global Footer -->
+	<div id="globalFooter"></div>
+	<script>
+		// Load global header and footer (if using with header.html/footer.html)
+		function loadHTML(id, url) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState === 4 && this.status === 200) {
+					document.getElementById(id).innerHTML = this.responseText;
+				}
+			};
+			xhttp.open("GET", url, true);
+			xhttp.send();
+		}
+		loadHTML("globalHeader", "header.html");
+		loadHTML("globalFooter", "footer.html");
+	</script>
 </body>
 </html>

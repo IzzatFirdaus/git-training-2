@@ -1,0 +1,19 @@
+<!--
+    footer.html
+    Global footer to be included on all HTML pages.
+    - Displays last updated date and current project version
+-->
+<footer style="background: #222d36; color: #dde1e7; padding: 18px 0; margin-top: 40px;">
+    <div style="max-width: 1100px; margin: 0 auto; text-align: center; font-size: 15px;">
+        <span>
+            Kemas kini terakhir: <span id="lastUpdated"></span> &nbsp;|&nbsp; Versi Projek: <span id="projectVersion"></span>
+        </span>
+    </div>
+    <script>
+        // Set last updated date (auto-update with each deployment/edit)
+        // This can be automated with build tools; here, it's set manually or via JS date.
+        document.getElementById('lastUpdated').textContent = "12 Ogos 2025";
+        // Set project version (update this string as needed)
+        document.getElementById('projectVersion').textContent = "v1.0.0";
+    </script>
+</footer>
